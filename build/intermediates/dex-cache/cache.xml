@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_63e78d6be136142b5fbd2a16e38607f8452d0d0f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_d071a031b304f9d31ed2d43e8cc327a418c7144a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_ac32d31e992051ffcec495a7bc2f12cf579a5e7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_2e5495bd003fab8ea79809af0e447d2b7234c340\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_92278f091048be457d8fcd31ee02f4e491bbcc00\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_09890b46bbdae4b72e19f61ac02af0cebe3ef1c3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_4f11c865452a59dba03a1e1f9ed756d64a5bcabc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_fbd4c6eb523b721ed4134df677d8f98416e89ef5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fe2828b3db10afd0c47f91efdd3e26f4dfb87d01">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3bdc732e99a708bb8e64f5767ec1150ac96bd4b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_53e35a2852ecd473e6a7159b227e4b35557f4b47\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8fbc8875774dfc87eb6111eb5bd484d3571a262d">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ac8ed3f0fba52c049480fb43abef3286d76ab6ca\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_ab8644f1732249142bc0e341fef1cfad45dc1b3a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_e0e85fdbceb38017f2ecb05fd12ddf1afe37782e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_846b39e3ed87d9ee58d6fa85e9ecf841926e5509\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_f204aeeef33c42fb730bad9429e8827fbfea54b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_e7fa949a8958cb0f8cf79ba3cc1b95e8c314bc94\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7cf00be5bdb3257d1af8aa12a5dbdef1662704cf">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c33038cd7d87296e675e992a0d2a13de9f9c833c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_d7119c951d35fef79ed718db1938f9a660f52463\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_6930021e4316dd6746b0dc0c598d3b7bffe5fa5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_868b27654629419b27a4e994a855699f0a1cdc8f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_e8a7c22cb82c21e1a3397909b83b31001c551c6e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_6a5a3e78f74026ce56dc1bf1c2a9953ca9dc9c63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_5ba2e042ca6414c9d56bd057f456a5f43a14cadb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_c62d01a9f0ce1fd42e74655eac9e8d148d541bd4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_667496155f7f4151fc1fa880b91c8309fc8c61a3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_0aabd64e9f982a0c57448fb8f0e60c46b3c85b51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_8f6bc0a52d1970fd3506ced253631f8f9d8bcbc0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="2d11fbfbdbade83dd5ce56e3ccb9a2dccab9b1c9">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4c706eaf6bf2e07a5aa65681ffe65864f7787473\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_a43577f54b95e03417b497b41f3a994a7df1691f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_ade0a98a5cfb953122a293d309ba3eddf39459da\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_3869a937ee7ed13591c7aa2b8d01b8b051a521ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Additions\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="D:\Projects\Android\MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_ed854c8e2e0424f410cd65a50d54789b46c38ff9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Projects\Android\Android_MorseCode\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="D:\Projects\Android\Android_MorseCode\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_b5cb747e89fabddbb7d869b04538b88643c8b10b\classes.dex" />
+    </item>
+
+</items>

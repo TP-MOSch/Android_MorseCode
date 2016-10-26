@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Morse Code</string>
+    <string name="hey_text">Hey there! It is our Morse Code App.</string>
+    <string name="send_text">You can send Morse code with your flashlight:</string>
+    <string name="send_button">Send the code</string>
+    <string name="receive_text">Also you can receive Morse code with your light sensor:</string>
+    <string name="receive_button">Receive the code</string>
+    <string name="message_text">Type your message here</string>
+    <string name="message_send_button">Send message</string>
+</resources>
