@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +22,7 @@ public class SendActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Log.d("FlashLightActivity", "onCreate()");
+        Log.d("FlashLightActivity", "onCreate()");
         setContentView(R.layout.activity_send);
 
         Button buttonSendMessage = (Button) findViewById(R.id.button_sendMessage);
@@ -60,9 +61,46 @@ public class SendActivity extends AppCompatActivity {
                     if (isTorchOn) {
                         turnOffFlashLight();
                         isTorchOn = false;
-                    } else {
-                        turnOnFlashLight();
-                        isTorchOn = true;
+                    }
+                    //Morse rules:
+                    //The length of a dot is one unit.
+                    //A dash is three units.
+                    //The space between parts of the same letter is one unit. The space between letters is three units.
+                    //The space between words is seven units.
+                    Thread t = new Thread() {
+                        public void run() {
+                            long unit = 300; //Delay in ms
+                            String myString = "...*---*...";
+                            try {
+                                for (int i = 0; i < myString.length(); i++) {
+                                    switch (myString.charAt(i)) {
+                                        case '.':  //dot
+                                            turnOnFlashLight();
+                                            sleep(unit);
+                                            turnOffFlashLight();
+                                            break;
+                                        case '-':  //dash
+                                            turnOnFlashLight();
+                                            sleep(3*unit);
+                                            turnOffFlashLight();
+                                            break;
+                                        case '*':  //space between letters
+                                            sleep(3*unit);
+                                            break;
+                                        case ' ':  //space between words
+                                            sleep(7*unit);
+                                            break;
+                                    }
+                                }
+                            } catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    t.start();
+                    if (isTorchOn) {
+                        turnOffFlashLight();
+                        isTorchOn = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
