@@ -6,9 +6,8 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c4af8bd-961b-477a-8efb-b11e68603314" name="Default" comment="Morse from keyboard and some refactor">
+    <list default="true" id="6c4af8bd-961b-477a-8efb-b11e68603314" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/app/.gitignore" />
     </list>
     <ignored path="Android_MorseCode.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2282,7 +2281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477579978613</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update gitignore">
+      <created>1477581254025</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1477581254025</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2337,7 +2343,8 @@
     <MESSAGE value="Init" />
     <MESSAGE value="Morse SOS with flashlight" />
     <MESSAGE value="Morse from keyboard and some refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Morse from keyboard and some refactor" />
+    <MESSAGE value="update gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="update gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
