@@ -58,7 +58,7 @@ public class SendActivity extends AppCompatActivity {
                     Thread t = new Thread() {
                         public void run() {
                             long unit = 300; //Delay in ms
-                            //String messageString = "...*---*...";
+                            String sosString = "...*---*...";
                             String messageString = editText.getText().toString();
                             try {
                                 for (int i = 0; i < messageString.length(); i++) {
