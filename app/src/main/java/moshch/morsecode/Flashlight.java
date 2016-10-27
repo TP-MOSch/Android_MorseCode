@@ -35,6 +35,58 @@ public class Flashlight {
 
     }
 
+    public void makeMorseWithFlashlight(final String messageString) {
+        //Morse rules:
+        //The length of a dot is one unit.
+        //A dash is three units.
+        //The space between parts of the same letter is one unit.
+        //The space between letters is three units.
+        //The space between words is seven units.
+        try {
+            if (isOn()) {
+                turnOff();
+            }
+
+            Thread t = new Thread() {
+                public void run() {
+                    long unit = 300; //Delay in ms
+                    try {
+                        for (int i = 0; i < messageString.length(); i++) {
+                            switch (messageString.charAt(i)) {
+                                case '.':  //dot
+                                    turnOn();
+                                    sleep(unit);
+                                    turnOff();
+                                    sleep(unit);
+                                    break;
+                                case '-':  //dash
+                                    turnOn();
+                                    sleep(3*unit);
+                                    turnOff();
+                                    sleep(unit);
+                                    break;
+                                case '*':  //space between letters
+                                    sleep(3*unit);
+                                    break;
+                                case ' ':  //space between words
+                                    sleep(7*unit);
+                                    break;
+                            }
+                        }
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            };
+            t.start();
+            if (isOn()) {
+                turnOff();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Boolean checkFlashlightIsAvailable() {
         Boolean isFlashAvailable = mContext.getApplicationContext().getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
