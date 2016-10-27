@@ -1,21 +1,26 @@
 package moshch.morsecode;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 
 public class Flashlight {
-    Context mContext;
-    Intent mIntent;
+    private Context mContext;
+    private Intent mIntent;
     private CameraManager mCameraManager;
+    private Camera camera;
+    Camera.Parameters params;
     private String mCameraId;
     private Boolean isFlashlightOn;
 
@@ -23,19 +28,11 @@ public class Flashlight {
         this.mContext = mContext;
         mIntent = new Intent(mContext, SendActivity.class);
         isFlashlightOn = false;
-
         if (!checkFlashlightIsAvailable()) { return; }
-
-        mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
-        try {
-            mCameraId = mCameraManager.getCameraIdList()[0];
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
-        }
-
+        getCamera();
     }
 
-    public void makeMorseWithFlashlight(final String messageString) {
+    public void makeMorseCode(final String messageString) {
         //Morse rules:
         //The length of a dot is one unit.
         //A dash is three units.
@@ -46,7 +43,6 @@ public class Flashlight {
             if (isOn()) {
                 turnOff();
             }
-
             Thread t = new Thread() {
                 public void run() {
                     long unit = 300; //Delay in ms
@@ -95,13 +91,12 @@ public class Flashlight {
 
             AlertDialog alert = new AlertDialog.Builder(mContext)
                     .create();
-            alert.setTitle("Error");
-            alert.setMessage("Your device doesn't support flashlight!");
+            alert.setTitle("Error with flashlight!");
+            alert.setMessage("Your device doesn't support flashlight, so you can't send a message with flashlight.");
             alert.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    // closing the application
+                    // closing the activity
                     ((Activity)mContext).finish();
-                    System.exit(0);
                 }
             });
             alert.show();
@@ -111,25 +106,70 @@ public class Flashlight {
         }
     }
 
-    public void turnOn() {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mCameraManager.setTorchMode(mCameraId, true);
+    @TargetApi(21)
+    private void getCamera() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
+            try {
+                mCameraId = mCameraManager.getCameraIdList()[0];
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            if (camera == null) {
+                try {
+                    camera = Camera.open();
+                    params = camera.getParameters();
+                } catch (RuntimeException e) {
+                    Log.e("Camera Error: ", e.getMessage());
+                }
+            }
+        }
+    }
+
+    public void turnOn() {
+        if (!isFlashlightOn) {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    mCameraManager.setTorchMode(mCameraId, true);
+                    isFlashlightOn = true;
+                } else {
+                    if (camera == null || params == null) {
+                        return;
+                    }
+                    params = camera.getParameters();
+                    params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    camera.setParameters(params);
+                    camera.startPreview();
+                    isFlashlightOn = true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void turnOff() {
+        if(isFlashlightOn)
+        {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    mCameraManager.setTorchMode(mCameraId, false);
+                    isFlashlightOn = false;
+                } else {
+                    if (camera == null || params == null) {
+                        return;
+                    }
+                    params = camera.getParameters();
+                    params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                    camera.setParameters(params);
+                    camera.stopPreview();
+                    isFlashlightOn = false;
+                }
 
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mCameraManager.setTorchMode(mCameraId, false);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

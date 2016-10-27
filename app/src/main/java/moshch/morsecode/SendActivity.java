@@ -23,7 +23,7 @@ public class SendActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sosString = "...*---*...";
-                flashlight.makeMorseWithFlashlight(editText.getText().toString());
+                flashlight.makeMorseCode(editText.getText().toString());
             }
         });
     }
