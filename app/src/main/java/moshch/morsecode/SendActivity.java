@@ -1,11 +1,7 @@
 package moshch.morsecode;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class SendActivity extends AppCompatActivity {
-
-    private CameraManager mCameraManager;
-    private String mCameraId;
-    private Boolean isFlashlightOn;
-
+    Flashlight flashlight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,26 +20,14 @@ public class SendActivity extends AppCompatActivity {
 
         Button buttonSendMessage = (Button) findViewById(R.id.button_sendMessage);
         final EditText editText = (EditText) findViewById(R.id.sendingText);
-        isFlashlightOn = false;
-
-        if (!checkFlashlightIsAvailable()) {
-            return;
-        }
-
-        mCameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        try {
-            mCameraId = mCameraManager.getCameraIdList()[0];
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
-        }
+        flashlight = new Flashlight(this);
 
         buttonSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    if (isFlashlightOn) {
-                        turnOffFlashlight();
-                        isFlashlightOn = false;
+                    if (flashlight.isOn()) {
+                        flashlight.turnOff();
                     }
                     //Morse rules:
                     //The length of a dot is one unit.
@@ -64,15 +44,15 @@ public class SendActivity extends AppCompatActivity {
                                 for (int i = 0; i < messageString.length(); i++) {
                                     switch (messageString.charAt(i)) {
                                         case '.':  //dot
-                                            turnOnFlashlight();
+                                            flashlight.turnOn();
                                             sleep(unit);
-                                            turnOffFlashlight();
+                                            flashlight.turnOff();
                                             sleep(unit);
                                             break;
                                         case '-':  //dash
-                                            turnOnFlashlight();
+                                            flashlight.turnOn();
                                             sleep(3*unit);
-                                            turnOffFlashlight();
+                                            flashlight.turnOff();
                                             sleep(unit);
                                             break;
                                         case '*':  //space between letters
@@ -89,9 +69,8 @@ public class SendActivity extends AppCompatActivity {
                         }
                     };
                     t.start();
-                    if (isFlashlightOn) {
-                        turnOffFlashlight();
-                        isFlashlightOn = false;
+                    if (flashlight.isOn()) {
+                        flashlight.turnOff();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -123,51 +102,28 @@ public class SendActivity extends AppCompatActivity {
             return true;
         }
     }
-    public void turnOnFlashlight() {
-
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mCameraManager.setTorchMode(mCameraId, true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void turnOffFlashlight() {
-
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mCameraManager.setTorchMode(mCameraId, false);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(isFlashlightOn){
-            turnOffFlashlight();
+        if(flashlight.isOn()){
+            flashlight.turnOff();
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(isFlashlightOn){
-            turnOffFlashlight();
+        if(flashlight.isOn()){
+            flashlight.turnOff();
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(isFlashlightOn){
-            turnOnFlashlight();
+        if(flashlight.isOn()){
+            flashlight.turnOff();
         }
     }
 }
