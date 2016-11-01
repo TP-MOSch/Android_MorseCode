@@ -14,6 +14,12 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
+class SendingThread extends Thread {
+
+    public void run() {
+
+    }
+}
 
 public class Flashlight {
     private Context mContext;
@@ -34,17 +40,17 @@ public class Flashlight {
         getCamera();
     }
 
+    //Morse rules:
+    //The length of a dot is one unit.
+    //A dash is three units.
+    //The space between parts of the same letter is one unit.
+    //The space between letters is three units.
+    //The space between words is seven units.
     public void makeMorseCode(final String messageString) {
-        //Morse rules:
-        //The length of a dot is one unit.
-        //A dash is three units.
-        //The space between parts of the same letter is one unit.
-        //The space between letters is three units.
-        //The space between words is seven units.
         try {
             turnFlashOff();
             threadSendingCode = new Thread() {
-                public void run() { //Delay in ms
+                public void run() {
                     try {
                         for (int i = 0; i < messageString.length(); i++) {
                             switch (messageString.charAt(i)) {
@@ -83,6 +89,8 @@ public class Flashlight {
             e.printStackTrace();
         }
     }
+
+
 
     public Boolean checkFlashlightIsAvailable() {
         Boolean isFlashAvailable = mContext.getApplicationContext().getPackageManager()
@@ -179,8 +187,12 @@ public class Flashlight {
     }
 
     public void stopSendingCode() {
-        threadSendingCode.interrupt();
-        turnFlashOff();
+        if (threadSendingCode != null) {
+            if (threadSendingCode.isAlive()) {
+                threadSendingCode.interrupt();
+                turnFlashOff();
+            }
+        }
     }
 
     public void setUnitValue(int unitValue) {
