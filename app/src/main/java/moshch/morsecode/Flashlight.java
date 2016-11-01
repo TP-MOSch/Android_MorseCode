@@ -23,6 +23,7 @@ public class Flashlight {
     Camera.Parameters params;
     private String mCameraId;
     private Boolean isFlashlightOn;
+    private Thread threadSendingCode;
 
     public Flashlight(Context mContext) {
         this.mContext = mContext;
@@ -40,25 +41,23 @@ public class Flashlight {
         //The space between letters is three units.
         //The space between words is seven units.
         try {
-            if (isOn()) {
-                turnOff();
-            }
-            Thread t = new Thread() {
+            turnFlashOff();
+            threadSendingCode = new Thread() {
                 public void run() {
                     long unit = 300; //Delay in ms
                     try {
                         for (int i = 0; i < messageString.length(); i++) {
                             switch (messageString.charAt(i)) {
                                 case '.':  //dot
-                                    turnOn();
+                                    turnFlashOn();
                                     sleep(unit);
-                                    turnOff();
+                                    turnFlashOff();
                                     sleep(unit);
                                     break;
                                 case '-':  //dash
-                                    turnOn();
+                                    turnFlashOn();
                                     sleep(3*unit);
-                                    turnOff();
+                                    turnFlashOff();
                                     sleep(unit);
                                     break;
                                 case '/':  //space between letters
@@ -68,16 +67,18 @@ public class Flashlight {
                                     sleep(7*unit);
                                     break;
                             }
+                            if (Thread.interrupted()) {
+                                return;
+                            }
                         }
+
                     } catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             };
-            t.start();
-            if (isOn()) {
-                turnOff();
-            }
+            threadSendingCode.start();
+            turnFlashOff();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,7 +128,7 @@ public class Flashlight {
         }
     }
 
-    public void turnOn() {
+    public void turnFlashOn() {
         if (!isFlashlightOn) {
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -149,7 +150,7 @@ public class Flashlight {
         }
     }
 
-    public void turnOff() {
+    public void turnFlashOff() {
         if(isFlashlightOn)
         {
             try {
@@ -173,10 +174,13 @@ public class Flashlight {
         }
     }
 
-    public Boolean isOn() {
+    public Boolean isFlashOn() {
         return isFlashlightOn;
     }
 
-
+    public void stopSendingCode() {
+        threadSendingCode.interrupt();
+        turnFlashOff();
+    }
 
 }

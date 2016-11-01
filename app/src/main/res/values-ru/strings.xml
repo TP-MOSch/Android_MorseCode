@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Код Морзе</string>
-    <string name="receive_button">Получить код</string>
-    <string name="send_button">Отправить код</string>
-    <string name="send_text">Вы можете отправить код Морзе с помощью фонарика:</string>
-    <string name="receive_text">Вы можете получить код Морзе с помощью датчика света:</string>
-    <string name="hey_text">Привет! Это наше приложение Азбуки Морзе.</string>
-    <string name="message_text">Введите сообщение сюда</string>
-    <string name="message_send_button">Отправить</string>
+    <string name="button_main_receive">Получить код</string>
+    <string name="button_main_send">Отправить код</string>
+    <string name="text_main_send">Вы можете отправить код Морзе с помощью фонарика:</string>
+    <string name="text_main_receive">Вы можете получить код Морзе с помощью датчика света:</string>
+    <string name="text_hey">Привет! Это наше приложение Азбуки Морзе.</string>
+    <string name="text_send_message">Введите сообщение сюда</string>
+    <string name="button_send_startSending">Отправить</string>
+    <string name="button_send_stopSending">Остановить</string>
 </resources>

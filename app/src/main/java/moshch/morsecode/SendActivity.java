@@ -15,7 +15,8 @@ public class SendActivity extends AppCompatActivity {
         Log.d("FlashlightActivity", "onCreate()");
         setContentView(R.layout.activity_send);
 
-        Button buttonSendMessage = (Button) findViewById(R.id.button_sendMessage);
+        final Button buttonSendMessage = (Button) findViewById(R.id.button_sendMessage);
+        final Button buttonStopSending = (Button) findViewById(R.id.button_stopSending);
         final EditText editText = (EditText) findViewById(R.id.sendingText);
         flashlight = new Flashlight(this);
 
@@ -26,29 +27,30 @@ public class SendActivity extends AppCompatActivity {
                 flashlight.makeMorseCode(editText.getText().toString());
             }
         });
+
+        buttonStopSending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flashlight.stopSendingCode();
+            }
+        });
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(flashlight.isOn()){
-            flashlight.turnOff();
-        }
+        flashlight.stopSendingCode();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(flashlight.isOn()){
-            flashlight.turnOff();
-        }
+        flashlight.stopSendingCode();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(flashlight.isOn()){
-            flashlight.turnOff();
-        }
+        flashlight.stopSendingCode();
     }
 }
