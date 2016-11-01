@@ -11,4 +11,5 @@
     <string name="text_send_unitTime">Set one unit time:</string>
     <string name="text_receive_lightSensorText">Light sensor value:</string>
     <string name="text_receive_receivedMessageText">Received message:</string>
+    <string name="button_receive_calibrate">Calibrate</string>
 </resources>

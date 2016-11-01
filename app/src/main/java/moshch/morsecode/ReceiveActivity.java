@@ -1,22 +1,26 @@
 package moshch.morsecode;
 
 import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ReceiveActivity extends AppCompatActivity implements SensorEventListener {
 
     TextView textCurrentSensorValue;
     TextView textReceivedCode;
+    Button buttonCalibrate;
     SensorManager mSensorManager;
     Sensor lightSensor;
     long unit = 300;
     long luxValueChangesOnFlash = 1000;
     MorseLightSensor morseLightSensor;
+    Boolean isCalibrating = false;
 
 
     @Override
@@ -26,16 +30,38 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
 
         textCurrentSensorValue = (TextView) findViewById(R.id.textView_lightSensorValue);
         textReceivedCode = (TextView) findViewById(R.id.textView_receivedMessageValue);
+        buttonCalibrate = (Button) findViewById(R.id.button_calibrateUnit);
+
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         lightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         morseLightSensor = new MorseLightSensor(unit, luxValueChangesOnFlash);
+
+        buttonCalibrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isCalibrating) {
+                    isCalibrating = true;
+                    morseLightSensor.Calibrate();
+                    buttonCalibrate.setText("Stop");
+                    textReceivedCode.setText("Calibrating...");
+                } else {
+                    isCalibrating = false;
+                    buttonCalibrate.setText(getResources().getString(R.string.button_receive_calibrate));
+                    textReceivedCode.setText("Calibrated. " + morseLightSensor.getUnitValue() + " " + morseLightSensor.getLuxValueChangesOnFlash());
+                }
+            }
+        });
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         textCurrentSensorValue.setText(String.valueOf(event.values[0]));
-        morseLightSensor.newLuxValue(event.values[0]);
-        textReceivedCode.setText(morseLightSensor.getDecodedString());
+        if (!isCalibrating) {
+            morseLightSensor.newLuxValue(event.values[0]);
+            textReceivedCode.setText(morseLightSensor.getDecodedString());
+        } else {
+            morseLightSensor.newLuxValueCalibrate(event.values[0]);
+        }
     }
 
     @Override

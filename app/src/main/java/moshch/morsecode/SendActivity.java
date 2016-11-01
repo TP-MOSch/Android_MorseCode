@@ -31,6 +31,7 @@ public class SendActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sosString = "...*---*...";
+                flashlight.setUnitValue(seekBarUnit.getProgress());
                 flashlight.makeMorseCode(editText.getText().toString());
             }
         });
@@ -56,7 +57,6 @@ public class SendActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 textViewUnitValue.setText(String.valueOf(seekBarUnit.getProgress()));
-                flashlight.setUnitValue(seekBarUnit.getProgress());
             }
         });
     }

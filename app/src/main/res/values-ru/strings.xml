@@ -12,4 +12,5 @@
     <string name="text_send_unitTime">Задать значение еденицы времени:</string>
     <string name="text_receive_lightSensorText">Значение от датчика сенсора:</string>
     <string name="text_receive_receivedMessageText">Полученное сообщение:</string>
+    <string name="button_receive_calibrate">Откалибровать</string>
 </resources>
