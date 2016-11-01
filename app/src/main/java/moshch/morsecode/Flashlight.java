@@ -61,7 +61,7 @@ public class Flashlight {
                                     turnOff();
                                     sleep(unit);
                                     break;
-                                case '*':  //space between letters
+                                case '/':  //space between letters
                                     sleep(3*unit);
                                     break;
                                 case ' ':  //space between words
