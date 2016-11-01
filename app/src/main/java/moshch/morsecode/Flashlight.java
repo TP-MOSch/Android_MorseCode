@@ -24,6 +24,7 @@ public class Flashlight {
     private String mCameraId;
     private Boolean isFlashlightOn;
     private Thread threadSendingCode;
+    private int unit;
 
     public Flashlight(Context mContext) {
         this.mContext = mContext;
@@ -43,8 +44,7 @@ public class Flashlight {
         try {
             turnFlashOff();
             threadSendingCode = new Thread() {
-                public void run() {
-                    long unit = 300; //Delay in ms
+                public void run() { //Delay in ms
                     try {
                         for (int i = 0; i < messageString.length(); i++) {
                             switch (messageString.charAt(i)) {
@@ -181,6 +181,10 @@ public class Flashlight {
     public void stopSendingCode() {
         threadSendingCode.interrupt();
         turnFlashOff();
+    }
+
+    public void setUnitValue(int unitValue) {
+        this.unit = unitValue;
     }
 
 }

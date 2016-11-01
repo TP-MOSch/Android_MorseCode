@@ -9,4 +9,5 @@
     <string name="text_send_message">Введите сообщение сюда</string>
     <string name="button_send_startSending">Отправить</string>
     <string name="button_send_stopSending">Остановить</string>
+    <string name="text_send_unitTime">Задать значение еденицы времени:</string>
 </resources>
