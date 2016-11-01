@@ -13,12 +13,11 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     TextView textSensorValue;
     TextView textReceivedCode;
     SensorManager mSensorManager;
-    Sensor LightSensor;
-    Boolean isFirstValue = true;
-    Boolean isFlashOn = false;
-    float currentLightValue = 0, lastLightValue = 0;
-    long timeFlashOn, timeFlashOff;
-    String decodedCode = new String();
+    Sensor lightSensor;
+    long unit = 300;
+    long luxValueChangesOnFlash = 1000;
+    MorseLightSensor morseLightSensor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,49 +27,17 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
         textSensorValue = (TextView) findViewById(R.id.textSensorValue);
         textReceivedCode = (TextView) findViewById(R.id.textView_receivedCode);
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        LightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        lightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        morseLightSensor = new MorseLightSensor(unit, luxValueChangesOnFlash);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        currentLightValue = event.values[0];
+        morseLightSensor.newLuxValue(event.values[0]);
 
-        textSensorValue.setText("Current light value: " + currentLightValue);
-        //if(event.sensor.getType() == Sensor.TYPE_LIGHT){}
+        textSensorValue.setText("Current light value: " + event.values[0]);
 
-        //flash turns on
-        if (!isFlashOn && currentLightValue >= lastLightValue + 1000.0) {
-            isFlashOn = true;
-            timeFlashOn = System.currentTimeMillis();
-
-            if (isFirstValue) {
-                isFirstValue = false;
-            } else {
-                timeFlashOff = System.currentTimeMillis() - timeFlashOff;
-                textReceivedCode.setText(textReceivedCode.getText() + " -" + timeFlashOff);
-                if (timeFlashOff > 800.0 && timeFlashOff <= 1500.0) {
-                    decodedCode += "/";
-                }
-                if (timeFlashOff > 1500) {
-                    decodedCode += " ";
-                }
-            }
-        }
-
-        //flash turns off
-        if (isFlashOn && currentLightValue <= lastLightValue - 1000.0) {
-            isFlashOn = false;
-            timeFlashOff = System.currentTimeMillis();
-            timeFlashOn = System.currentTimeMillis() - timeFlashOn;
-            textReceivedCode.setText(textReceivedCode.getText() + " +" + timeFlashOn);
-            if (timeFlashOn >= 500.0) {
-                decodedCode += "-";
-            } else {
-                decodedCode += ".";
-            }
-        }
-        lastLightValue = currentLightValue;
-        textReceivedCode.setText(decodedCode);
+        textReceivedCode.setText(morseLightSensor.getDecodedString());
     }
 
     @Override
@@ -82,10 +49,9 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     protected void onResume() {
         // Register a listener for the sensor.
         super.onResume();
-        if(LightSensor != null){
+        if(lightSensor != null){
             //textSensorValue.setText("Sensor.TYPE_LIGHT Available");
-            mSensorManager.registerListener(this, LightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
+            mSensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
 
         }
