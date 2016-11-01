@@ -75,9 +75,13 @@
         android:text="300"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/textView_unitValue"
+        android:textSize="18sp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_below="@+id/seekBar_unit"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/textView_unitValue" />
+        android:layout_marginTop="13dp" />
 
 </RelativeLayout>

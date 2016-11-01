@@ -10,4 +10,6 @@
     <string name="button_send_startSending">Отправить</string>
     <string name="button_send_stopSending">Остановить</string>
     <string name="text_send_unitTime">Задать значение еденицы времени:</string>
+    <string name="text_receive_lightSensorText">Значение от датчика сенсора:</string>
+    <string name="text_receive_receivedMessageText">Полученное сообщение:</string>
 </resources>

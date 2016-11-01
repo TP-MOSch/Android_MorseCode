@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class ReceiveActivity extends AppCompatActivity implements SensorEventListener {
 
-    TextView textSensorValue;
+    TextView textCurrentSensorValue;
     TextView textReceivedCode;
     SensorManager mSensorManager;
     Sensor lightSensor;
@@ -24,8 +24,8 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
 
-        textSensorValue = (TextView) findViewById(R.id.textSensorValue);
-        textReceivedCode = (TextView) findViewById(R.id.textView_receivedCode);
+        textCurrentSensorValue = (TextView) findViewById(R.id.textView_lightSensorValue);
+        textReceivedCode = (TextView) findViewById(R.id.textView_receivedMessageValue);
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         lightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         morseLightSensor = new MorseLightSensor(unit, luxValueChangesOnFlash);
@@ -33,10 +33,8 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        textCurrentSensorValue.setText(String.valueOf(event.values[0]));
         morseLightSensor.newLuxValue(event.values[0]);
-
-        textSensorValue.setText("Current light value: " + event.values[0]);
-
         textReceivedCode.setText(morseLightSensor.getDecodedString());
     }
 
@@ -50,7 +48,7 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
         // Register a listener for the sensor.
         super.onResume();
         if(lightSensor != null){
-            //textSensorValue.setText("Sensor.TYPE_LIGHT Available");
+            //textCurrentSensorValue.setText("Sensor.TYPE_LIGHT Available");
             mSensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
 

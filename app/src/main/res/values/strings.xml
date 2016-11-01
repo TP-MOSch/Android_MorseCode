@@ -9,4 +9,6 @@
     <string name="button_send_startSending">Send message</string>
     <string name="button_send_stopSending">Stop sending</string>
     <string name="text_send_unitTime">Set one unit time:</string>
+    <string name="text_receive_lightSensorText">Light sensor value:</string>
+    <string name="text_receive_receivedMessageText">Received message:</string>
 </resources>
