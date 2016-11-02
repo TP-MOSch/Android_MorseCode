@@ -1,60 +1,78 @@
 package moshch.morsecode;
 
+import java.util.ArrayList;
+
 public class MorseLightSensor {
     private String decodedString;
-    private Boolean isFirstValue = true;
-    private Boolean isFlashOn = false;
+    private Boolean isFirstValue;
+    private Boolean isFlashOn;
+    private Boolean isCalibrating;
     private float lastLightValue;
     private long flashOnTimerValue, flashOffTimerValue;
     private long unit;
-    private float luxValueChangesOnFlash;
+    private float flashBrightness;
+    private ArrayList<Float> arrayBrightnessValues;
+    private ArrayList<Long> arrayUnitValues;
 
-    public MorseLightSensor(long oneUnitValue, float luxValueChangesOnFlash) {
+    public MorseLightSensor(long oneUnitValue, float flashBrightness) {
         this.unit = oneUnitValue;
-        this.luxValueChangesOnFlash = luxValueChangesOnFlash;
+        this.flashBrightness = flashBrightness;
+
         lastLightValue = 0;
         decodedString = "";
+        arrayBrightnessValues = new ArrayList<>();
+        arrayUnitValues = new ArrayList<>();
+        isFirstValue = true;
+        isFlashOn = false;
+        isCalibrating = false;
     }
 
-    public void newLuxValue(float currentLightValue){
+    public void startCalibrating() {
+        isCalibrating = true;
+        arrayBrightnessValues.clear();
+        arrayUnitValues.clear();
+        decodedString = "";
+        flashBrightness = 1;
+        unit = 0;
+    }
+
+    public void stopCalibrating() {
+        isCalibrating = false;
+        isFirstValue = true;
+        stopFlashOnTimer();
+        if(!arrayUnitValues.isEmpty()) {
+            unit = averageLong(arrayUnitValues);
+        }
+    }
+
+    public void addValue(float currentLightValue) {
         if (isFirstValue) {
             isFirstValue = false;
+            lastLightValue = currentLightValue;//?
             return;
         }
-        if (!isFlashOn && currentLightValue >= lastLightValue + luxValueChangesOnFlash) {
-            flashTurnsOn();
+        if (!isFlashOn && currentLightValue >= lastLightValue + flashBrightness) {
             isFlashOn = true;
+            if (!isCalibrating) {
+                flashTurnsOn();
+            } else {
+                startFlashOnTimer();
+                arrayBrightnessValues.add(currentLightValue - lastLightValue);
+                flashBrightness = averageFloat(arrayBrightnessValues);
+            }
         }
-        if (isFlashOn && currentLightValue <= lastLightValue - luxValueChangesOnFlash){
-            flashTurnsOff();
+        if (isFlashOn && currentLightValue <= lastLightValue - flashBrightness){
             isFlashOn = false;
+            if (!isCalibrating) {
+                flashTurnsOff();
+            } else {
+                stopFlashOnTimer();
+                arrayUnitValues.add(flashOnTimerValue);
+            }
         }
         lastLightValue = currentLightValue;
     }
-
-    public void Calibrate() {
-        luxValueChangesOnFlash = 0;
-    }
-
-    public void newLuxValueCalibrate(float currentLightValue) {
-        if (isFirstValue) {
-            lastLightValue = currentLightValue;
-            isFirstValue = false;
-            return;
-        }
-        if (!isFlashOn && currentLightValue >= lastLightValue + luxValueChangesOnFlash) {
-            startFlashOnTimer();
-            isFlashOn = true;
-            luxValueChangesOnFlash = (luxValueChangesOnFlash + currentLightValue - lastLightValue) / 2;
-        }
-        if (isFlashOn && currentLightValue <= lastLightValue - luxValueChangesOnFlash){
-            stopFlashOnTimer();
-            isFlashOn = false;
-            unit = flashOnTimerValue;
-        }
-        lastLightValue = currentLightValue;
-    }
-
+    
     private void flashTurnsOn(){
         startFlashOnTimer();
         stopFlashOffTimer();
@@ -69,7 +87,7 @@ public class MorseLightSensor {
     private void flashTurnsOff(){
         startFlashOffTimer();
         stopFlashOnTimer();
-        if (flashOnTimerValue >= unit*2) {
+        if (flashOnTimerValue >= unit*1.5) {
             decodedString += "-";
         } else {
             decodedString += ".";
@@ -77,15 +95,19 @@ public class MorseLightSensor {
     }
 
     public String getDecodedString() {
-        return decodedString;
+        if (!isCalibrating) {
+            return decodedString;
+        } else {
+            return "Calibrating...";
+        }
     }
 
     public long getUnitValue() {
         return unit;
     }
 
-    public float getLuxValueChangesOnFlash() {
-        return luxValueChangesOnFlash;
+    public float getFlashBrightness() {
+        return flashBrightness;
     }
 
     private void startFlashOnTimer() {
@@ -102,5 +124,23 @@ public class MorseLightSensor {
 
     private void stopFlashOffTimer() {
         flashOffTimerValue = System.currentTimeMillis() - flashOffTimerValue;
+    }
+
+    private float averageFloat(ArrayList<Float> array) {
+        float average = 0f;
+        for(int i = 0; i < array.size(); i++) {
+            average += array.get(i);
+        }
+        average /= array.size();
+        return average;
+    }
+
+    private long averageLong(ArrayList<Long> array) {
+        float average = 0f;
+        for(int i = 0; i < array.size(); i++) {
+            average += array.get(i);
+        }
+        average /= array.size();
+        return (long) average;
     }
 }

@@ -41,13 +41,13 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
             public void onClick(View v) {
                 if (!isCalibrating) {
                     isCalibrating = true;
-                    morseLightSensor.Calibrate();
+                    morseLightSensor.startCalibrating();
                     buttonCalibrate.setText("Stop");
-                    textReceivedCode.setText("Calibrating...");
                 } else {
                     isCalibrating = false;
+                    morseLightSensor.stopCalibrating();
                     buttonCalibrate.setText(getResources().getString(R.string.button_receive_calibrate));
-                    textReceivedCode.setText("Calibrated. " + morseLightSensor.getUnitValue() + " " + morseLightSensor.getLuxValueChangesOnFlash());
+                    textReceivedCode.setText("Calibrated. Unit=" + morseLightSensor.getUnitValue() + " lux=" + morseLightSensor.getFlashBrightness());
                 }
             }
         });
@@ -56,12 +56,8 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     @Override
     public void onSensorChanged(SensorEvent event) {
         textCurrentSensorValue.setText(String.valueOf(event.values[0]));
-        if (!isCalibrating) {
-            morseLightSensor.newLuxValue(event.values[0]);
-            textReceivedCode.setText(morseLightSensor.getDecodedString());
-        } else {
-            morseLightSensor.newLuxValueCalibrate(event.values[0]);
-        }
+        morseLightSensor.addValue(event.values[0]);
+        textReceivedCode.setText(morseLightSensor.getDecodedString());
     }
 
     @Override
