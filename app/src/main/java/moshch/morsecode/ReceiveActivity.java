@@ -32,7 +32,7 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
         textReceivedCode = (TextView) findViewById(R.id.textView_receivedMessageValue);
         buttonCalibrate = (Button) findViewById(R.id.button_calibrateUnit);
 
-        mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         lightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         morseLightSensor = new MorseLightSensor(unit, luxValueChangesOnFlash);
 
@@ -69,7 +69,7 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     protected void onResume() {
         // Register a listener for the sensor.
         super.onResume();
-        if(lightSensor != null){
+        if (lightSensor != null) {
             //textCurrentSensorValue.setText("Sensor.TYPE_LIGHT Available");
             mSensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         } else {

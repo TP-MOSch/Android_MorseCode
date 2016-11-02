@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class SendActivity extends AppCompatActivity {
     Flashlight flashlight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
