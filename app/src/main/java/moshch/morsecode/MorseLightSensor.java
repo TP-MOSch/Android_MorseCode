@@ -38,7 +38,7 @@ public class MorseLightSensor {
 
     public void stopCalibrating() {
         isCalibrating = false;
-        isFirstValue = true;
+        //isFirstValue = true;
         stopFlashOnTimer();
         if(!arrayUnitValues.isEmpty()) {
             unit = averageLong(arrayUnitValues);
@@ -56,8 +56,13 @@ public class MorseLightSensor {
             if (!isCalibrating) {
                 flashTurnsOn();
             } else {
+                stopFlashOnTimer();
                 startFlashOnTimer();
-                arrayBrightnessValues.add(currentLightValue - lastLightValue);
+                if (currentLightValue - lastLightValue > 800) {
+                    arrayBrightnessValues.add(800f);
+                } else {
+                    arrayBrightnessValues.add(currentLightValue - lastLightValue);
+                }
                 flashBrightness = averageFloat(arrayBrightnessValues);
             }
         }
@@ -72,7 +77,7 @@ public class MorseLightSensor {
         }
         lastLightValue = currentLightValue;
     }
-    
+
     private void flashTurnsOn(){
         startFlashOnTimer();
         stopFlashOffTimer();
