@@ -14,12 +14,6 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
-class SendingThread extends Thread {
-
-    public void run() {
-
-    }
-}
 
 public class Flashlight {
     private Context mContext;
@@ -37,7 +31,6 @@ public class Flashlight {
         mIntent = new Intent(mContext, SendActivity.class);
         isFlashlightOn = false;
         if (!checkFlashlightIsAvailable()) { return; }
-        getCamera();
     }
 
     //Morse rules:
@@ -47,50 +40,55 @@ public class Flashlight {
     //The space between letters is three units.
     //The space between words is seven units.
     public void makeMorseCode(final String messageString) {
+        getCamera();
         try {
             turnFlashOff();
-            threadSendingCode = new Thread() {
-                public void run() {
-                    try {
-                        for (int i = 0; i < messageString.length(); i++) {
-                            switch (messageString.charAt(i)) {
-                                case '.':  //dot
-                                    turnFlashOn();
-                                    sleep(unit);
-                                    turnFlashOff();
-                                    sleep(unit);
-                                    break;
-                                case '-':  //dash
-                                    turnFlashOn();
-                                    sleep(3*unit);
-                                    turnFlashOff();
-                                    sleep(unit);
-                                    break;
-                                case '/':  //space between letters
-                                    sleep(3*unit);
-                                    break;
-                                case ' ':  //space between words
-                                    sleep(7*unit);
-                                    break;
-                            }
-                            if (Thread.interrupted()) {
-                                return;
-                            }
-                        }
-
-                    } catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            };
-            threadSendingCode.start();
+            flashThread thread = new flashThread(messageString);
+            thread.start();
             turnFlashOff();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    class flashThread extends Thread {
+        private String message;
+        flashThread(String message) {
+            this.message = message;
+        }
+        public void run() {
+            try {
+                for (int i = 0; i < message.length(); i++) {
+                    switch (message.charAt(i)) {
+                        case '.':  //dot
+                            turnFlashOn();
+                            sleep(unit);
+                            turnFlashOff();
+                            sleep(unit);
+                            break;
+                        case '-':  //dash
+                            turnFlashOn();
+                            sleep(3*unit);
+                            turnFlashOff();
+                            sleep(unit);
+                            break;
+                        case '/':  //space between letters
+                            sleep(3*unit);
+                            break;
+                        case ' ':  //space between words
+                            sleep(7*unit);
+                            break;
+                    }
+                    if (Thread.interrupted()) {
+                        return;
+                    }
+                }
 
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 
     public Boolean checkFlashlightIsAvailable() {
         Boolean isFlashAvailable = mContext.getApplicationContext().getPackageManager()
@@ -129,6 +127,7 @@ public class Flashlight {
                 try {
                     camera = Camera.open();
                     params = camera.getParameters();
+                    camera.startPreview();
                 } catch (RuntimeException e) {
                     Log.e("Camera Error: ", e.getMessage());
                 }
@@ -146,6 +145,8 @@ public class Flashlight {
                     if (camera == null || params == null) {
                         return;
                     }
+                    //params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+                    //params.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
                     params = camera.getParameters();
                     params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                     camera.setParameters(params);
@@ -172,7 +173,7 @@ public class Flashlight {
                     params = camera.getParameters();
                     params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                     camera.setParameters(params);
-                    camera.stopPreview();
+                    camera.startPreview();
                     isFlashlightOn = false;
                 }
 
@@ -182,16 +183,15 @@ public class Flashlight {
         }
     }
 
-    public Boolean isFlashOn() {
-        return isFlashlightOn;
-    }
-
     public void stopSendingCode() {
         if (threadSendingCode != null) {
             if (threadSendingCode.isAlive()) {
                 threadSendingCode.interrupt();
-                turnFlashOff();
             }
+            threadSendingCode = null;
+            turnFlashOff();
+            camera.setParameters(params);
+            camera.startPreview();
         }
     }
 
