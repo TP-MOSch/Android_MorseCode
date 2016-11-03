@@ -37,7 +37,27 @@ String[] dottie = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
     }
 
     public static String morseToText(final String input) {
-        return "";
+      String data = input.toLowerCase();
+      String[] words = data.split(" ");
+      String[] convertedWords = [];
+      for (String word: words)
+      {
+          String convertedCharacters = [];
+          String[] characters = word.split("/");
+          for (String character: characters)
+          {
+              if (character.isEmpty()) { continue; }
+              for (int m = 0; m < dottie.length(); m++)
+              {
+                  if (character.equals(dottie[m])))
+                  {
+                      convertedCharacters.push(alpha[m]);
+                  }
+              }
+          }
+          convertedWords.push(String.join("", convertedCharacters));
+      }
+      return String.join(" ", convertedWords);
     }
 
 
