@@ -23,7 +23,7 @@ public class Flashlight {
     Camera.Parameters params;
     private String mCameraId;
     private Boolean isFlashlightOn;
-    private Thread threadSendingCode;
+    flashThread threadSendingCode;
     private int unit;
 
     public Flashlight(Context mContext) {
@@ -33,25 +33,25 @@ public class Flashlight {
         if (!checkFlashlightIsAvailable()) { return; }
     }
 
-    //Morse rules:
-    //The length of a dot is one unit.
-    //A dash is three units.
-    //The space between parts of the same letter is one unit.
-    //The space between letters is three units.
-    //The space between words is seven units.
     public void makeMorseCode(final String messageString) {
         getCamera();
         try {
             turnFlashOff();
-            flashThread thread = new flashThread(messageString);
-            thread.start();
+            flashThread threadSendingCode = new flashThread(messageString);
+            threadSendingCode.start();
             turnFlashOff();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    class flashThread extends Thread {
+    //Morse rules:
+    //The length of a dot is one unit.
+    //A dash is three units.
+    //The space between parts of the same letter is one unit.
+    //The space between letters is three units.
+    //The space between words is seven units.
+    private class flashThread extends Thread {
         private String message;
         flashThread(String message) {
             this.message = message;
@@ -190,8 +190,6 @@ public class Flashlight {
             }
             threadSendingCode = null;
             turnFlashOff();
-            camera.setParameters(params);
-            camera.startPreview();
         }
     }
 
