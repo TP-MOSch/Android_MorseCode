@@ -33,7 +33,7 @@ public class SendActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String sosString = "...*---*...";
                 flashlight.setUnitValue(seekBarUnit.getProgress());
-                flashlight.makeMorseCode(editText.getText().toString());
+                flashlight.makeMorseCode(MorseConverter.textToMorse(editText.getText().toString()));
             }
         });
 

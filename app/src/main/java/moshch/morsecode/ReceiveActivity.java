@@ -57,7 +57,7 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     public void onSensorChanged(SensorEvent event) {
         textCurrentSensorValue.setText(String.valueOf(event.values[0]));
         morseLightSensor.addValue(event.values[0]);
-        textReceivedCode.setText(morseLightSensor.getDecodedString());
+        textReceivedCode.setText(MorseConverter.morseToText(morseLightSensor.getDecodedString()));
     }
 
     @Override
