@@ -1,5 +1,6 @@
 package moshch.morsecode;
 
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,7 +19,7 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     SensorManager mSensorManager;
     Sensor lightSensor;
     long unit = 300;
-    long luxValueChangesOnFlash = 1000;
+    float luxValueChangesOnFlash = 1000f;
     MorseLightSensor morseLightSensor;
     Boolean isCalibrating = false;
 
@@ -66,21 +67,35 @@ public class ReceiveActivity extends AppCompatActivity implements SensorEventLis
     }
 
     @Override
+    protected void onPause() {
+        // Be sure to unregister the sensor when the activity pauses.
+        super.onPause();
+
+        SharedPreferences prefs = getSharedPreferences("mySettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong("unitTimeReceive", morseLightSensor.getUnitValue());
+        editor.putFloat("flashBrightness", morseLightSensor.getFlashBrightness());
+        editor.apply();
+
+        mSensorManager.unregisterListener(this);
+    }
+
+    @Override
     protected void onResume() {
         // Register a listener for the sensor.
         super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("mySettings", MODE_PRIVATE);
+        unit = prefs.getLong("unitTimeReceive", 500);
+        luxValueChangesOnFlash = prefs.getFloat("flashBrightness", 500f);
+
         if (lightSensor != null) {
             //textCurrentSensorValue.setText("Sensor.TYPE_LIGHT Available");
             mSensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
-
+            //lightSensor is not available
         }
     }
 
-    @Override
-    protected void onPause() {
-        // Be sure to unregister the sensor when the activity pauses.
-        super.onPause();
-        mSensorManager.unregisterListener(this);
-    }
+
 }

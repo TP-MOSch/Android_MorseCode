@@ -37,7 +37,7 @@ public class Flashlight {
         getCamera();
         try {
             turnFlashOff();
-            flashThread threadSendingCode = new flashThread(messageString);
+            threadSendingCode = new flashThread(messageString);
             threadSendingCode.start();
             turnFlashOff();
         } catch (Exception e) {

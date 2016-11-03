@@ -76,7 +76,7 @@ public class SendActivity extends AppCompatActivity {
         flashlight.stopSendingCode();
         SharedPreferences prefs = getSharedPreferences("mySettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("unitTime", seekBarUnit.getProgress());
+        editor.putInt("unitTimeSend", seekBarUnit.getProgress());
         editor.putString("messageSend", editText.getText().toString());
         editor.apply();
     }
@@ -86,7 +86,7 @@ public class SendActivity extends AppCompatActivity {
         super.onResume();
         flashlight.stopSendingCode();
         SharedPreferences prefs = getSharedPreferences("mySettings", MODE_PRIVATE);
-        seekBarUnit.setProgress(prefs.getInt("unitTime", 500));
+        seekBarUnit.setProgress(prefs.getInt("unitTimeSend", 500));
         editText.setText(prefs.getString("messageSend", ""));
     }
 }
