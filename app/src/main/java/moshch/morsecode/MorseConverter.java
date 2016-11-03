@@ -2,11 +2,11 @@ package moshch.morsecode;
 
 
 public final class MorseConverter {
-String[] alpha = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+ static String[] alpha = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
                 "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
                 "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8",
-                "9", "0", " " }
-String[] dottie = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                "9", "0", " " };
+static String[] dottie = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
                 "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.",
                 "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-",
                 "-.--", "--..", ".----", "..---", "...--", "....-", ".....",
@@ -15,49 +15,48 @@ String[] dottie = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
     public static String textToMorse(final String input) {
         String data = input.toLowerCase();
         String[] words = data.split(" ");
-        String[] convertedWords = [];
+        String convertedWords = "";
         for (String word: words)
         {
-            String convertedCharacters = [];
             String[] characters = word.split("");
             for (String character: characters)
             {
                 if (character.isEmpty()) { continue; }
-                for (int m = 0; m < alpha.length(); m++)
+                for (int m = 0; m < alpha.length; m++)
                 {
-                    if (character.equals(alpha[m])))
+                    if (character.equals(alpha[m]))
                     {
-                        convertedCharacters.push(dottie[m]);
+                        convertedWords+=dottie[m];
                     }
                 }
+                convertedWords += "/";
             }
-            convertedWords.push(String.join("/", convertedCharacters));
+            convertedWords = convertedWords.substring(0, convertedWords.length()-1) + " ";
         }
-        return String.join(" ", convertedWords);
+        return convertedWords;
     }
 
     public static String morseToText(final String input) {
       String data = input.toLowerCase();
       String[] words = data.split(" ");
-      String[] convertedWords = [];
+      String convertedWords = "";
       for (String word: words)
       {
-          String convertedCharacters = [];
           String[] characters = word.split("/");
           for (String character: characters)
           {
               if (character.isEmpty()) { continue; }
-              for (int m = 0; m < dottie.length(); m++)
+              for (int m = 0; m < dottie.length; m++)
               {
-                  if (character.equals(dottie[m])))
+                  if (character.equals(dottie[m]))
                   {
-                      convertedCharacters.push(alpha[m]);
+                      convertedWords += alpha[m];
                   }
               }
           }
-          convertedWords.push(String.join("", convertedCharacters));
+          convertedWords += " ";
       }
-      return String.join(" ", convertedWords);
+      return convertedWords;
     }
 
 
